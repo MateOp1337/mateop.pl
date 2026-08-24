@@ -19,6 +19,12 @@ section {
   scroll-margin-top: 2.5em;
 }
 
+@media (max-width: 650px), (max-height: 500px) and (orientation: landscape) {
+  section {
+    scroll-margin-top: 0;
+  }
+}
+
 .ambientGlow {
   position: fixed;
   width: 20em;
