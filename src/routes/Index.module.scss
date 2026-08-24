@@ -1,0 +1,405 @@
+@use '../assets/scss/color-palette' as *;
+
+@keyframes ag-anim {
+  from {
+    opacity: 0.04;
+    transform: scale(1) translateY(30px);
+  }
+  to {
+    opacity: 0.07;
+    transform: scale(1.2) translateY(-30px);
+  }
+}
+
+h2 {
+  text-align: center;
+}
+
+section {
+  scroll-margin-top: 2.5em;
+}
+
+.ambientGlow {
+  position: fixed;
+  width: 20em;
+  height: 20em;
+  z-index: -999;
+  filter: blur(40px);
+  border-radius: 100%;
+  opacity: 0.07;
+  animation: ag-anim 8s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+
+  &#ag1 {
+    top: 10%;
+    left: 15%;
+    background-color: $accent;
+  }
+
+  &#ag2 {
+    top: 30%;
+    right: 15%;
+    background-color: $accent-secondary;
+  }
+}
+
+.hero {
+  width: 100%;
+  height: fit-content;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1em;
+
+  .introduction {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    width: 55%;
+
+    .greeting {
+      font-size: 3em;
+      font-weight: 500;
+      line-height: 1;
+
+      .username {
+        color: $accent;
+      }
+    }
+
+    .role {
+      font-size: 1.2em;
+      color: $text-muted;
+    }
+
+    .aboutMe {
+      font-size: 0.75em;
+    }
+
+    .ctaButtons {
+      display: flex;
+      gap: 0.3em;
+      flex-wrap: wrap;
+
+      .cta {
+        width: fit-content;
+        border: solid $accent 1px;
+        background: none;
+        border-radius: 15px;
+        padding: 0.75em 2em;
+        color: $accent;
+        font-size: 0.7em;
+        margin-top: 0.5em;
+        cursor: pointer;
+        transition: 0.25s;
+        min-width: 240px;
+
+        &:hover {
+          background: $accent;
+          color: inherit;
+        }
+      }
+
+      .ctaSecondary {
+        width: fit-content;
+        min-width: 240px;
+      }
+    }
+  }
+
+  .basics {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 0.7em;
+    width: 30%;
+    min-width: 300px;
+
+    .item {
+      border: solid $border 1px;
+      border-radius: 20px;
+      width: 100%;
+      min-width: 300px;
+      height: clamp(80px, 4em, 100px);
+      padding: 0.6em;
+      display: flex;
+      gap: 0.6em;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.5s;
+      box-shadow: rgb(28, 28, 28, 0.35) 0 5px 10px 5px;
+      backdrop-filter: blur(10px);
+
+      .icon {
+        margin: 0;
+        color: #0090f7;
+        background: linear-gradient(
+          45deg,
+          rgba(0, 78, 247, 0.2) 0%,
+          rgba(0, 95, 247, 0.2) 35%,
+          rgba(0, 78, 247, 0.2) 75%
+        );
+        border-radius: 12px;
+        height: 2em;
+        width: 2em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        font-size: 1.2em;
+
+        &::before {
+          transition: transform 0.5s;
+        }
+      }
+
+      &:hover {
+        transform: translateY(-0.15em) scale(1.01);
+
+        .icon::before {
+          transform: translateY(-0.05em) scale(1.05);
+        }
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.12em;
+
+        .title {
+          font-size: 0.85em;
+          font-weight: 400;
+          color: $accent;
+        }
+
+        .description {
+          font-size: 0.65em;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1063px) {
+  .hero {
+    padding: 2em 10%;
+
+    .introduction {
+      width: 100%;
+      margin-top: auto;
+
+      .greeting,
+      .role,
+      .aboutMe {
+        text-align: center;
+      }
+
+      .ctaButtons {
+        .cta,
+        .ctaSecondary {
+          width: 100%;
+          flex: 1;
+        }
+      }
+    }
+
+    .basics {
+      width: 100%;
+      margin-bottom: auto;
+
+      .item {
+        justify-content: left;
+      }
+    }
+  }
+}
+
+.featuredProjects {
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+
+  .projects {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    padding: 3em 0em;
+
+    .project {
+      width: clamp(300px, 20em, 500px);
+      height: min(100%, 20em);
+      border: solid $border 1px;
+      border-radius: 20px;
+      padding: 1.5em;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+
+      .header {
+        display: flex;
+        gap: 1em;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .logo {
+          width: 3.4em;
+        }
+
+        .overview {
+          display: flex;
+          flex-direction: column;
+          gap: 0.3em;
+          width: 12.5em;
+
+          .title {
+            font-weight: 500;
+            font-size: 1.5em;
+          }
+
+          .tags {
+            display: flex;
+            gap: 0.2em;
+            flex-wrap: wrap;
+
+            .tag {
+              font-size: 0.575em;
+              font-weight: 500;
+              backdrop-filter: blur(3px);
+              padding: 0.3em 0.6em;
+              text-wrap: nowrap;
+              border-radius: 20px;
+              width: fit-content;
+
+              &.roleTag {
+                border: solid $accent 1px;
+                color: $accent;
+              }
+
+              &.productTag {
+                border: solid $text 1px;
+                color: $text;
+              }
+            }
+          }
+        }
+      }
+
+      .description {
+        font-size: 0.8em;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 0.3em;
+
+        .small {
+          padding: 0.3em;
+          color: $text;
+          border-color: $text;
+          font-size: 0.8em;
+          flex-shrink: 0;
+          aspect-ratio: 1;
+          width: 2.5em;
+          height: 2.5em;
+          border-radius: 14px;
+
+          &:hover {
+            color: $border;
+            background-color: $text;
+          }
+        }
+
+        .cta {
+          width: 100%;
+          border-color: $accent;
+          color: $accent;
+
+          &:hover {
+            color: $text;
+            background-color: $accent;
+          }
+        }
+      }
+    }
+  }
+}
+
+.skills {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  padding: 2em;
+
+  .skillsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+
+    .skill {
+      width: 14em;
+      height: 10em;
+      border: solid $border 1px;
+      border-radius: 20px;
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5em;
+      transition: 0.25s;
+
+      .icon {
+        margin: 0;
+        color: $accent;
+        background: linear-gradient(
+          45deg,
+          rgba(0, 78, 247, 0.2) 0%,
+          rgba(0, 95, 247, 0.2) 35%,
+          rgba(0, 78, 247, 0.2) 75%
+        );
+        border-radius: 12px;
+        height: 2em;
+        width: 2em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        font-size: 1.2em;
+
+        &::before {
+          transition: transform 0.5s;
+        }
+      }
+
+      .title {
+        font-weight: 400;
+        color: $accent;
+      }
+
+      .description {
+        font-size: 0.7em;
+
+        b {
+          font-weight: 500;
+        }
+      }
+
+      &:hover {
+        transform: translateY(-0.15em) scale(1.01);
+
+        .icon::before {
+          transform: translateY(-0.05em) scale(1.05);
+        }
+      }
+    }
+  }
+}
